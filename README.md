@@ -1,4 +1,4 @@
-# FrontEnd BootCamp 15기 바닐라 프로젝트 가이드
+# FrontEnd BootCamp 15기 파이널 프로젝트 가이드
 
 ## 목차
 
