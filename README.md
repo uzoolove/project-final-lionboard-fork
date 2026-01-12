@@ -10,6 +10,6 @@
 6. [깃허브 위키](./docs/guide/06.wiki.md)
 7. [코드 컨벤션](./docs/guide/07.convention.md)
 8. [스크럼](./docs/guide/08.scrum.md)
-9. [Git 브랜치 전략](./docs/guide/9.branch.md)
+9. [Git 브랜치 전략](./docs/guide/09.branch.md)
 10. [PR 실습](./docs/guide/10.practice.md)
 11. [API 서버 사용 가이드](./docs/guide/11.api.md)
