@@ -13,3 +13,6 @@
 9. [Git 브랜치 전략](./docs/guide/09.branch.md)
 10. [PR 실습](./docs/guide/10.practice.md)
 11. [API 서버 사용 가이드](./docs/guide/11.api.md)
+12. [산출물 가이드](./docs/guide/12.documents.md)
+13. [자주 묻는 질문](./docs/guide/13.qna.md)
+14. [리팩토링 가이드](./docs/guide/14.refactoring.md)
