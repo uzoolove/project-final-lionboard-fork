@@ -4,6 +4,7 @@ import useUserStore from "@/zustand/userStore";
 import Image from "next/image";
 import Link from "next/link";
 import { Button, LinkButton } from "@/components/ui/Button";
+import NotificationBadge from "@/app/guide/notification/_components/NotificationBadge";
 
 export default function Header() {
   const { user, resetUser } = useUserStore();
@@ -18,7 +19,7 @@ export default function Header() {
         <div className="w-1/2 order-1 md:w-auto">
           <Link href="/" className="flex items-center gap-2">
             <Image className="mr-3 h-6 w-auto sm:h-9" src="/images/favicon.svg" width="24" height="24" alt="로고 이미지" />
-            <span className="text-lg font-bold">라이언 보드 v.04</span>
+            <span className="text-lg font-bold">라이언 보드 v.05</span>
           </Link>
         </div>
         <div className="w-auto order-2 text-base mt-4 md:mt-0">
@@ -32,19 +33,23 @@ export default function Header() {
         <div className="w-1/2 order-1 flex justify-end items-center md:order-2 md:w-auto">
 
           {user ? (
-            <form onSubmit={handleLogout}>
-              <p className="flex items-center">
-                <Image
-                  className="w-8 rounded-full mr-2" 
-                  src={user.image || '/images/favicon.svg'}
-                  alt={`${user.name}님 프로필 이미지`}
-                  width="24"
-                  height="24"
-                />
-                용쌤님
-                <Button type="submit" size="sm" bgColor="gray">로그아웃</Button>
-              </p>
-            </form>
+            <>
+              <form onSubmit={handleLogout}>
+                <p className="flex items-center">
+                  <Image
+                    className="w-8 rounded-full mr-2"
+                    src={user.image || '/images/favicon.svg'}
+                    alt={`${user.name}님 프로필 이미지`}
+                    width="24"
+                    height="24"
+                  />
+                  {user.name}님
+                  <Button type="submit" size="sm" bgColor="gray">로그아웃</Button>
+                </p>
+
+              </form>
+              <NotificationBadge />
+            </>
           ) : (
             <div className="flex justify-end">
               <LinkButton href="/login" size="sm" bgColor="orange">로그인</LinkButton>

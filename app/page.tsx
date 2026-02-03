@@ -12,7 +12,7 @@ export default async function RootPage() {
 
       <section className="mt-16">
         <h2 className="text-2xl font-bold mb-4 text-center">주요 기능</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div className="bg-white p-6 rounded shadow dark:bg-gray-800">
             <h3 className="text-xl font-bold mb-2">정보 공유</h3>
             <p className="mb-4">다양한 정보와 지식을 공유하세요.</p>
@@ -27,6 +27,11 @@ export default async function RootPage() {
             <h3 className="text-xl font-bold mb-2">질문 게시판</h3>
             <p className="mb-4">궁금한 점을 질문하고 답변을 받아보세요.</p>
             <Link href="/qna" className="text-orange-500 hover:underline">바로가기</Link>
+          </div>
+          <div className="bg-white p-6 rounded shadow dark:bg-gray-800">
+            <h3 className="text-xl font-bold mb-2">개발 가이드</h3>
+            <p className="mb-4">추가 기능에 대한 개발 가이드를 확인하세요.</p>
+            <Link href="/guide" className="text-orange-500 hover:underline">바로가기</Link>
           </div>
         </div>
       </section>

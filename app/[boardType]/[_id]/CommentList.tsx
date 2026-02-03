@@ -1,9 +1,10 @@
 import CommentItem from "@/app/[boardType]/[_id]/CommentItem";
 import CommentNew from "@/app/[boardType]/[_id]/CommentNew";
 import { getReplies } from "@/lib/post";
+import { Post } from "@/types";
 
-export default async function CommentList({ boardType, _id }: { boardType: string, _id: string }) {
-  const res = await getReplies(_id);
+export default async function CommentList({ post }: { post: Post }) {
+  const res = await getReplies(String(post._id));
   console.log('CommentList', res);
   return (
     <section className="mb-8">
@@ -16,7 +17,7 @@ export default async function CommentList({ boardType, _id }: { boardType: strin
         <p>{res.message}</p>
       )}
 
-      <CommentNew boardType={boardType} _id={_id} />
+      <CommentNew post={post} />
     </section>
   );
 }

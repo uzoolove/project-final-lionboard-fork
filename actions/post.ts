@@ -181,6 +181,25 @@ export async function createReply(prevState: ReplyActionState, formData: FormDat
 
     data = await res.json();
 
+    // 댓글 등록 알림 메시지 전송
+    await fetch(`${API_URL}/notifications`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+        'Authorization': `Bearer ${body.accessToken}`,
+      },
+      body: JSON.stringify({
+        type: 'reply',
+        target_id: Number(body.targetId),
+        content: body.content,
+        extra: {
+          boardType: body.type,
+          postId: Number(body._id),
+        },
+      }),
+    });
+
   }catch(error){ // 네트워크 오류 처리
     console.error(error);
     return { ok: 0, message: '일시적인 네트워크 문제로 등록에 실패했습니다.' };
