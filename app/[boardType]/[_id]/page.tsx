@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import { getPost } from "@/lib/post";
 import { LinkButton } from "@/components/ui/Button";
 import DeleteForm from "@/app/[boardType]/[_id]/DeleteForm";
+import Author from "@/components/ui/Author";
 
 export async function generateMetadata({ params }: { params: Promise<{ boardType: string, _id: string }> }): Promise<Metadata | undefined> {
   const { boardType, _id } = await params;
@@ -44,7 +45,7 @@ export default async function InfoPage({ params }: { params: Promise<{ boardType
       <section className="mb-8 p-4">
         <div className="font-semibold text-xl">제목 : {post.title}</div>
         <div className="text-right text-gray-400">
-          <div>작성자 : {post.user.name}</div>
+          <div>작성자 : <Author post={post} /></div>
           <div>{post.createdAt}</div>
         </div>
         <div className="mb-4">

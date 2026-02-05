@@ -7,6 +7,8 @@ interface UserStoreState {
   user: User | null;
   setUser: (user: User | null) => void;
   resetUser: () => void;
+  _hasHydrated: boolean;
+  setHasHydrated: (state: boolean) => void;
 }
 
 // 로그인한 사용자 정보를 관리하는 스토어 생성
@@ -16,6 +18,8 @@ const UserStore: StateCreator<UserStoreState> = (set) => ({
   user: null,
   setUser: (user: User | null) => set({ user }),
   resetUser: () => set({ user: null }),
+  _hasHydrated: false,
+  setHasHydrated: (state: boolean) => set({ _hasHydrated: state }),
 });
 
 // 스토리지를 사용하지 않을 경우
@@ -25,7 +29,11 @@ const UserStore: StateCreator<UserStoreState> = (set) => ({
 const useUserStore = create<UserStoreState>()(
   persist(UserStore, {
     name: 'user',
-    storage: createJSONStorage(() => sessionStorage) // 기본은 localStorage
+    storage: createJSONStorage(() => sessionStorage), // 기본은 localStorage
+    // 스토리지에서 데이터를 불러온 직후 호출되는 콜백
+    onRehydrateStorage: () => (state) => {
+      state?.setHasHydrated(true); // 로그인 정보 복원 완료 플래그를 true로 설정
+    }
   })
 );
 

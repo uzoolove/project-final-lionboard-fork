@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Button, LinkButton } from "@/components/ui/Button";
 import NotificationBadge from "@/app/guide/notification/_components/NotificationBadge";
+import ChatBadge from "@/app/guide/chat/_components/ChatBadge";
 
 export default function Header() {
   const { user, resetUser } = useUserStore();
@@ -49,6 +50,7 @@ export default function Header() {
 
               </form>
               <NotificationBadge />
+              <ChatBadge />
             </>
           ) : (
             <div className="flex justify-end">
