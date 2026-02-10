@@ -98,3 +98,48 @@ export async function login(state: UserActionState, formData: FormData): Promise
   
   return data;
 }
+
+
+/**
+* 카카오 로그인
+* @param state - 이전 상태(사용하지 않음)
+* @param formData - 로그인 폼 데이터(FormData 객체)
+* @returns 로그인 결과 응답 객체
+* @description
+* 카카오 로그인 API 호출
+*/
+// ...
+// ...
+/**
+* 카카오 로그인
+* @param code - 카카오 인증 코드
+*/
+export async function kakaoLogin(code: string): Promise<UserActionState> {
+  const body = {
+    code,
+    redirect_uri: process.env.NEXT_PUBLIC_KAKAO_LOGIN_REDIRECT_URI
+  };
+
+  let res: Response;
+  let data: UserInfoRes | ErrorRes;
+
+  try{
+    // 로그인 API 호출
+    res = await fetch(`${API_URL}/users/login/kakao`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Client-Id': CLIENT_ID,
+      },
+      body: JSON.stringify(body),
+    });
+
+    data = await res.json();
+
+  }catch(error){ // 네트워크 오류 처리
+    console.error(error);
+    return { ok: 0, message: '일시적인 네트워크 문제가 발생했습니다.' };
+  }
+  
+  return data;
+}

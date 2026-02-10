@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import useUserStore from "@/zustand/userStore";
+import KaKaoLogin from "@/app/(user)/login/KaKaoLogin";
 
 export default function LoginForm() {
   const [userState, formAction, isPending] = useActionState(login, null);
@@ -15,7 +16,7 @@ export default function LoginForm() {
   const setUser = useUserStore(state => state.setUser);
 
   useEffect(() => {
-    if(userState?.ok){
+    if (userState?.ok) {
       setUser({
         _id: userState.item._id,
         email: userState.item.email,
@@ -74,11 +75,12 @@ export default function LoginForm() {
           <Link href="#" className="block mt-6 ml-auto text-gray-500 text-sm dark:text-gray-300 hover:underline">비밀번호를 잊으셨나요?</Link>
         </div>
         <div className="mt-10 flex justify-center items-center">
-          <Button disabled={isPending} type="submit">로그인</Button>
+          <Button disabled={isPending} type="submit" size="sm">로그인</Button>
+          <KaKaoLogin />
           <Link href="/signup" className="ml-8 text-gray-800 hover:underline">회원가입</Link>
         </div>
       </form>
     </>
-    
+
   );
 }
